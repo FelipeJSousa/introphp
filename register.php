@@ -42,8 +42,6 @@
             </div>
             <div class="text-center">Não tem uma conta? <a href="login.php">Continuar</a></div>
         </form>
-
-        
     </div>
 </body>
 </html>
