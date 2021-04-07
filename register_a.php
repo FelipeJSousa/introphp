@@ -11,8 +11,8 @@
     
     if(isset($_POST['Primeiro_nome']))
     {   
-        echo "'$Primeiro_nome', '$Ultimo_nome', '$Email', 'md5($Senha)'";
-        $consulta = "INSERT INTO Usuarios(Primeiro_nome, Ultimo_nome, Email, Senha) VALUES ('$Primeiro_nome', '$Ultimo_nome', '$Email', '$Senha')";
+        echo "'$Primeiro_nome', '$Ultimo_nome', '$Email', '$Senha'";
+        $consulta = "INSERT INTO Usuarios(Nome, Sobrenome, Email, Senha) VALUES ('$Primeiro_nome', '$Ultimo_nome', '$Email', '$Senha')";
         $sql=mysqli_query($conn,$consulta) or die("Não foi possivel gravar os dados!");
         header ("Location: login.php?status=success");
     }
