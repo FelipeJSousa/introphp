@@ -24,8 +24,8 @@
             <p class="hint-text">Crie sua conta</p>
             <div class="form-group">
                 <div class="row">
-                    <div class="col"><input type="text" class="form-control" name="Primeiro_nome" placeholder="Nome" required="required"></div>
-                    <div class="col"><input type="text" class="form-control" name="Ultimo_nome" placeholder="Sobrenome" required="required"></div>
+                    <div class="col"><input type="text" class="form-control" name="Nome" placeholder="Nome" required="required"></div>
+                    <div class="col"><input type="text" class="form-control" name="Sobrenome" placeholder="Sobrenome" required="required"></div>
                 </div>        	
             </div>
             <div class="form-group">
@@ -47,7 +47,7 @@
         </form>
     </div>
     <?php 
-	include 'footer.php'
+	include 'rodape.php'
 ?>
 </body>
 </html>

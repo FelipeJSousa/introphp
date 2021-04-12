@@ -43,7 +43,7 @@
 	
 </div>
 <?php 
-	include 'footer.php'
+	include 'rodape.php'
 ?>
 </body>
 </html>
