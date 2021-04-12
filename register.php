@@ -15,6 +15,9 @@
 
 </head>
 <body>
+<?php 
+	include 'cabecalho.php'
+?>
     <div class="signup-form">
         <form action="register_a.php" method="post" enctype="multipart/form-data">
             <h2>Cadastre-se!</h2>
@@ -43,5 +46,8 @@
             <div class="text-center">Não tem uma conta? <a href="login.php">Continuar</a></div>
         </form>
     </div>
+    <?php 
+	include 'footer.php'
+?>
 </body>
 </html>

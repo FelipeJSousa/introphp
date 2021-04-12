@@ -1,4 +1,5 @@
 <?php
+	
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +19,11 @@
 
 </head>
 <body>
+	<?php 
+		include 'cabecalho.php'
+	?>
 <div class="signup-form">
+
     <form action="home.php" method="post" enctype="multipart/form-data">
 		<h2>Bem-vindo</h2>
         <br>
@@ -35,6 +40,10 @@
         <div class="text-center">Deseja sair desta página? <br><a href="logout.php">Logout</a></div>
     </form>
 	
+	
 </div>
+<?php 
+	include 'footer.php'
+?>
 </body>
 </html>

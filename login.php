@@ -18,6 +18,9 @@
 
 </head>
 <body>
+<?php 
+	include 'cabecalho.php'
+?>
 <div class="signup-form">
     <form action="loginprocess.php" method="post" enctype="multipart/form-data">
 		<h2>Login</h2>
@@ -34,5 +37,8 @@
         <div class="text-center">Não possui conta? <a href="register.php">Crie uma conta aqui</a></div>
     </form>
 </div>
+<?php 
+	include 'footer.php'
+?>
 </body>
 </html>
