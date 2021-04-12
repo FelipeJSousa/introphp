@@ -17,7 +17,7 @@
 <body>
     <div class="signup-form">
         <form action="register_a.php" method="post" enctype="multipart/form-data">
-            <h2>Cadastre-se</h2>
+            <h2>Cadastre-se!</h2>
             <p class="hint-text">Crie sua conta</p>
             <div class="form-group">
                 <div class="row">
@@ -35,7 +35,7 @@
                 <input type="password" class="form-control" name="csenha" placeholder="Confirme a senha" required="required">
             </div>
             <div class="form-group">
-                <label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Termos de uso</a> & <a href="#">Politica de privacidade</a></label>
+                <label class="form-check-label"><input type="checkbox" required="required"> Eu aceito os <a href="#">Termos de uso</a> & <a href="#">Politica de privacidade</a></label>
             </div>
             <div class="form-group">
                 <button type="submit" name="Confirmar" class="btn btn-success btn-lg btn-block">Registrar agora</button>
