@@ -1,6 +1,7 @@
 <?php
-    session_start();
+	
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,26 +18,35 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
+
 </head>
 <body>
-<?php 
-	include 'cabecalho.php'
-?>
-<div class="signup-form">
-    <form action="loginprocess.php" method="post" enctype="multipart/form-data">
-		<h2>Login</h2>
-        <div class="form-group">
-        	<input type="email" class="form-control" name="email" placeholder="Email" required="required">
-        </div>
-		<div class="form-group">
-            <input type="password" class="form-control" name="senha" placeholder="Password" required="required">
-        </div>
-        </br>
-		<div class="form-group">
-            <button type="submit" name="save" class="btn btn-success btn-lg btn-block">Login</button>
-        </div>
-        <div class="text-center">Não possui conta? <a href="register.php">Crie uma conta aqui</a></div>
+	<?php 
+		include 'cabecalho.php'
+	?>
+<div class="signup-form page">
+	<?php
+		include 'menu.php'
+	?>
+    <form action="home.php" method="post" enctype="multipart/form-data">
+        <?php
+                include 'database.php';
+                session_start();
+				$IDUsuario= $_SESSION["IDUsuario"];
+				$sql=mysqli_query($conn,"SELECT * FROM usuario where IDUsuario='$IDUsuario' ");
+				$row  = mysqli_fetch_array($sql);
+                $resp = mysqli_query($conn, 'SELECT * FROM Conteudos WHERE Nome = "sobre"');
+                $row = mysqli_fetch_array($resp);
+                echo "<h1>". $row["Nome"] . "</h1>";
+                echo $row["Conteudo"];
+            ?>
+            
+            
+		<p class="hint-text"><br><?php echo $_SESSION["Nome"] ?> <?php echo $_SESSION["Sobrenome"] ?></p>
+        <div class="text-center">Deseja sair desta página? <br><a href="logout.php">Logout</a></div>
     </form>
+	
+	
 </div>
 <?php 
 	include 'rodape.php'
