@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include 'funcoes.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,10 +21,10 @@
 </head>
 <body>
 <?php 
-	include 'cabecalho.php'
+	include 'cabecalho.php';
 ?>
 <div class="signup-form">
-    <form action="loginprocess.php" method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" onsubmit="<?php loginProcess() ?>">
 		<h2>Login</h2>
         <div class="form-group">
         	<input type="email" class="form-control" name="email" placeholder="Email" required="required">
