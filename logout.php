@@ -5,6 +5,10 @@
     unset($_SESSION["Email"]);
     unset($_SESSION["Sobrenome"]);
     session_destroy();
+
     header("Location:login.php");
     die();
+
+
+
 ?>

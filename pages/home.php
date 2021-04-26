@@ -26,22 +26,15 @@
 	?>
 <div class="signup-form page">
 	<?php
-		include '../menu.php'
+		include '../funcoes.php';
+		verificaLogin();
+		include '../menu.php';
 	?>
+	
     <form action="home.php" method="post" enctype="multipart/form-data">
 		<h2>Bem-vindo</h2>
         <br>
 
-            <?php
-				session_start();
-				include '../database.php';
-				$IDUsuario= $_SESSION["IDUsuario"];
-				$sql=mysqli_query($conn,"SELECT * FROM usuario where IDUsuario='$IDUsuario' ");
-				$row  = mysqli_fetch_array($sql);
-				if($row["Nome"] == ''){
-					header ("Location: ../login.php");
-				};
-            ?>
             
 		<p class="hint-text"><br><b>Bem-vindo </b><?php echo $_SESSION["Nome"] ?> <?php echo $_SESSION["Sobrenome"] ?></p>
         <div class="text-center">Deseja sair desta página? <br><a href="../logout.php">Logout</a></div>
