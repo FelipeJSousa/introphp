@@ -1,4 +1,5 @@
 <?php
+	
 ?>
 
 <!DOCTYPE html>
@@ -12,13 +13,21 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="assests/css/style.css">
+<link rel="stylesheet" href="style/style.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
+
 </head>
 <body>
-<div class="signup-form">
+	<?php 
+		include 'cabecalho.php'
+	?>
+<div class="signup-form page">
+	<?php
+		include 'menu.php'
+	?>
     <form action="home.php" method="post" enctype="multipart/form-data">
 		<h2>Bem-vindo</h2>
         <br>
@@ -26,15 +35,22 @@
             <?php
 				session_start();
 				include 'database.php';
-				$Id= $_SESSION["Id"];
-				$sql=mysqli_query($conn,"SELECT * FROM USUARIOS where Id='$Id' ");
+				$IDUsuario= $_SESSION["IDUsuario"];
+				$sql=mysqli_query($conn,"SELECT * FROM usuario where IDUsuario='$IDUsuario' ");
 				$row  = mysqli_fetch_array($sql);
+				if($row["Nome"] == ''){
+					header ("Location: login.php");
+				};
             ?>
             
-		<p class="hint-text"><br><b>Bem-vindo </b><?php echo $_SESSION["Primeiro_nome"] ?> <?php echo $_SESSION["Ultimo_nome"] ?></p>
+		<p class="hint-text"><br><b>Bem-vindo </b><?php echo $_SESSION["Nome"] ?> <?php echo $_SESSION["Sobrenome"] ?></p>
         <div class="text-center">Deseja sair desta página? <br><a href="logout.php">Logout</a></div>
     </form>
 	
+	
 </div>
+<?php 
+	include 'rodape.php'
+?>
 </body>
 </html>

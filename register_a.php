@@ -9,11 +9,11 @@
         exit;
     }
     
-    if(isset($_POST['Primeiro_nome']))
+    if(isset($_POST['Nome']))
     {   
-        echo "'$Primeiro_nome', '$Ultimo_nome', '$Email', '$Senha'";
-        $consulta = "INSERT INTO usuario(Nome, Sobrenome, Email, Senha) VALUES ('$Primeiro_nome', '$Ultimo_nome', '$Email', '$Senha')";
-        $sql=mysqli_query($conn,$consulta) or die("Não foi possivel gravar os dados!!!!!".mysqli_error($db));
+        echo "'$Nome', '$Sobrenome', '$Email', '$Senha'";
+        $consulta = "INSERT INTO usuario(Nome, Sobrenome, Email, Senha) VALUES ('$Nome', '$Sobrenome', '$Email', '$Senha')";
+        $sql=mysqli_query($conn,$consulta);
         header ("Location: login.php?status=success");
     }
     else{
