@@ -2,6 +2,7 @@
 session_start();
 if(isset($_POST['email']))
 {
+    ob_start();
     extract($_POST);
     include 'database.php';
     $sql=mysqli_query($conn,"SELECT * FROM usuario where Email='$email' and Senha='$senha'");
@@ -15,7 +16,8 @@ if(isset($_POST['email']))
         $_SESSION["Email"]=$row['Email'];
         $_SESSION["Nome"]=$row['Nome'];
         $_SESSION["Sobrenome"]=$row['Sobrenome']; 
-        header("Location: home.php"); 
+        header("Location: pages/home.php"); 
+        die();
     }
     else
     {

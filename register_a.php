@@ -15,6 +15,7 @@
         $consulta = "INSERT INTO usuario(Nome, Sobrenome, Email, Senha) VALUES ('$Nome', '$Sobrenome', '$Email', '$Senha')";
         $sql=mysqli_query($conn,$consulta);
         header ("Location: login.php?status=success");
+        die();
     }
     else{
         echo "Passou";
