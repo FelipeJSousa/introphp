@@ -30,14 +30,9 @@
 	?>
     <form action="home.php" method="post" enctype="multipart/form-data">
         <?php
-                include 'database.php';
-                session_start();
-				$IDUsuario= $_SESSION["IDUsuario"];
-				$sql=mysqli_query($conn,"SELECT * FROM usuario where IDUsuario='$IDUsuario' ");
-				$row  = mysqli_fetch_array($sql);
-                $resp = mysqli_query($conn, 'SELECT * FROM Conteudos WHERE Nome = "sobre"');
-                $row = mysqli_fetch_array($resp);
-                echo "<h1>". $row["Nome"] . "</h1>";
+                include 'funcoes.php';
+                $conn = database();
+                verificaLogin();
                 echo $row["Conteudo"];
             ?>
             

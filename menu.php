@@ -1,6 +1,7 @@
 <?php
   echo'<div class="vertical-menu">';
-  include 'database.php';
+  include 'funcoes.php';
+  $conn = database();
   $resp = mysqli_query($conn, 'SELECT * FROM Conteudos');
   
   while($row = mysqli_fetch_array($resp)){
