@@ -2,13 +2,13 @@
   echo'<div class="vertical-menu">';
   include 'funcoes.php';
   $conn = database();
-  $resp = mysqli_query($conn, 'SELECT * FROM Conteudos');
+  $Conteudo = mysqli_query($conn, 'SELECT * FROM Conteudos');
   
-  while($row = mysqli_fetch_array($resp)){
-    $url = 'pages/'.str_replace(" ",'',$row['Nome']).'.php';
-    $uri = str_replace($url, '', $_SERVER['REQUEST_URI']);
-    $active = strpos($uri, $url) === false ? "" : 'class="active"';
-    echo '<a '. $active .'href="'.$url.'">'.$row['Nome'].'</a>';
+  $uri = substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], 'pages/'));  
+  while($ConteudoRow = mysqli_fetch_array($Conteudo)){
+    $url = 'pages/'.str_replace(" ",'',$ConteudoRow['Nome']).'.php';
+    $active = strpos($_SERVER['REQUEST_URI'], $url) === false ? "" : 'class="active"';
+    echo '<a '. $active .'href="'.$uri.$url.'">'.$ConteudoRow['Nome'].'</a>';
   }
   echo '</div>';
 ?>

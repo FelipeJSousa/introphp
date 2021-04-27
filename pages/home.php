@@ -1,6 +1,5 @@
 <?php
-	include 'funcoes.php';
-	$conn = database();
+	$page = "home"
 ?>
 
 <!DOCTYPE html>
@@ -19,27 +18,28 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-
 </head>
 <body>
 	<?php 
-		include '../cabecalho.php'
+		include '../cabecalho.php';
 	?>
 <div class="signup-form page">
 	<?php
-		include '../funcoes.php';
-		verificaLogin();
 		include '../menu.php';
+		
+		verificaLogin();
 	?>
 	
     <form action="home.php" method="post" enctype="multipart/form-data">
 		<h2>Bem-vindo</h2>
         <br>
-
-
-
             <?php
 				verificaLogin();
+				$conne = database();
+				$query = mysqli_query($conne, 'SELECT * FROM Conteudos');
+				while($cont = mysqli_fetch_array($query)){
+					echo $cont["Nome"] === $page ? $cont["Conteudo"] : "";
+				}
             ?>
 
             

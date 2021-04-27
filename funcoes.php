@@ -30,9 +30,6 @@
                 $_SESSION["Sobrenome"]=$row['Sobrenome']; 
 
                 header("Location: pages/home.php"); 
-
-
-
             }
             else
             {    

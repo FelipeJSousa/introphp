@@ -1,5 +1,5 @@
 <?php
-	
+	$page = "sobre"
 ?>
 
 <!DOCTYPE html>
@@ -30,23 +30,14 @@
 	?>
     <form action="home.php" method="post" enctype="multipart/form-data">
         <?php
+            verificaLogin();
 
-
-
-
-
-
-
-
-
-
-                include 'funcoes.php';
-                $conn = database();
-                verificaLogin();
-
-                echo $row["Conteudo"];
-            ?>
-            
+            $conne = database();
+            $query = mysqli_query($conne, 'SELECT * FROM Conteudos');
+            while($cont = mysqli_fetch_array($query)){
+                echo $cont["Nome"] === $page ? $cont["Conteudo"] : "";
+            }
+        ?>
             
 		<p class="hint-text"><br><?php echo $_SESSION["Nome"] ?> <?php echo $_SESSION["Sobrenome"] ?></p>
         <div class="text-center">Deseja sair desta página? <br><a href="../logout.php">Logout</a></div>
