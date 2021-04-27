@@ -1,5 +1,6 @@
 <?php
-	
+	include 'funcoes.php';
+	$conn = database();
 ?>
 
 <!DOCTYPE html>
@@ -33,14 +34,7 @@
         <br>
 
             <?php
-				session_start();
-				include 'database.php';
-				$IDUsuario= $_SESSION["IDUsuario"];
-				$sql=mysqli_query($conn,"SELECT * FROM usuario where IDUsuario='$IDUsuario' ");
-				$row  = mysqli_fetch_array($sql);
-				if($row["Nome"] == ''){
-					header ("Location: login.php");
-				};
+				verificaLogin();
             ?>
             
 		<p class="hint-text"><br><b>Bem-vindo </b><?php echo $_SESSION["Nome"] ?> <?php echo $_SESSION["Sobrenome"] ?></p>
