@@ -1,5 +1,6 @@
 <?php
-	
+	include 'funcoes.php';
+	$conn = database();
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +35,12 @@
     <form action="home.php" method="post" enctype="multipart/form-data">
 		<h2>Bem-vindo</h2>
         <br>
+
+
+
+            <?php
+				verificaLogin();
+            ?>
 
             
 		<p class="hint-text"><br><b>Bem-vindo </b><?php echo $_SESSION["Nome"] ?> <?php echo $_SESSION["Sobrenome"] ?></p>
