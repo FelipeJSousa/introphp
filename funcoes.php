@@ -18,8 +18,8 @@
         if(isset($_POST['email']))
         {
             extract($_POST);
-            include 'database.php';
-            $sql=mysqli_query($conn,"SELECT * FROM usuario where Email='$email' and Senha='$senha'");
+            $conn = database();
+            $sql = mysqli_query($conn,"SELECT * FROM usuario where Email='$email' and Senha='$senha'");
             
             $row  = mysqli_fetch_array($sql);
             if(is_array($row))
@@ -31,13 +31,8 @@
                 header("Location: home.php"); 
             }
             else
-            {
-                   
-                echo "<script>
-                alert('E-mail ou senha incorreta');
-                window.location.href='login.php';
-                </script>";
-          
+            {    
+               $GLOBALS["ErroForms"] = "<script> alert('E-mail ou senha incorreta'); window.location.href='login.php'; </script>";
             }
         }
     }
@@ -53,6 +48,24 @@
         };
     }
 
+    function registros(){
+        extract($_POST);
+        require("database.php");
+        $sql=mysqli_query($conn,"SELECT * FROM usuario where Email='$Email'");
+        if(mysqli_num_rows($sql)>0)
+        {
+            $GLOBALS["ErroRegister"]  = "Email Já existe";
+            exit();
+        }
 
+        if(isset($_POST['Nome']))
+        {   
+            echo "'$Nome', '$Sobrenome', '$Email', '$Senha'";
+            $consulta = "INSERT INTO usuario(Nome, Sobrenome, Email, Senha) VALUES ('$Nome', '$Sobrenome', '$Email', '$Senha')";
+            $sql=mysqli_query($conn,$consulta);
+            header ("Location: login.php?status=success");
+        }
+    
+    }
 
 ?>
