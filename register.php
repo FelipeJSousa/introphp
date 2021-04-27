@@ -1,6 +1,5 @@
 <?php
-    require("database.php");
-
+    require("funcoes.php");
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +19,7 @@
 	include 'cabecalho.php'
 ?>
     <div class="signup-form">
-        <form action="register_a.php" method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" onsubmit="<?php registros() ?>">
             <h2>Cadastre-se!</h2>
             <p class="hint-text">Crie sua conta</p>
             <div class="form-group">
@@ -46,9 +45,15 @@
             </div>
             <div class="text-center">Ja tem uma conta? <a href="login.php">Entrar</a><br/></div>
         </form>
+        <?php 
+        echo $GLOBALS["ErroRegister"];
+        $GLOBALS["ErroRegister"] = "";
+        ?>
+
+
     </div>
     <?php 
 	include 'rodape.php'
-?>
+    ?>
 </body>
 </html>

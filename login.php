@@ -38,6 +38,11 @@
         </div>
         <div class="text-center">Não possui conta? <a href="register.php">Crie uma conta aqui</a></div>
     </form>
+    <?php
+        echo $GLOBALS["ErroForms"];
+        $GLOBALS["ErroForms"] = "";
+    ?>
+
 </div>
 <?php 
 	include 'rodape.php'
