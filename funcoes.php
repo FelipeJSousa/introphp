@@ -28,7 +28,11 @@
                 $_SESSION["Email"]=$row['Email'];
                 $_SESSION["Nome"]=$row['Nome'];
                 $_SESSION["Sobrenome"]=$row['Sobrenome']; 
+
                 header("Location: pages/home.php"); 
+
+
+
             }
             else
             {    

@@ -31,7 +31,16 @@
         verificaLogin();
 	?>
     <form action="home.php" method="post" enctype="multipart/form-data">
-        
+
+      
+
+        <?php
+                include 'funcoes.php';
+                $conn = database();
+                verificaLogin();
+                echo $row["Conteudo"];
+            ?>
+
             
             
 		<p class="hint-text"><br><?php echo $_SESSION["Nome"] ?> <?php echo $_SESSION["Sobrenome"] ?></p>
