@@ -29,7 +29,7 @@
                 $_SESSION["Nome"]=$row['Nome'];
                 $_SESSION["Sobrenome"]=$row['Sobrenome']; 
 
-                header("Location: pages/home.php"); 
+                header("Location: pages/home/index.php");
             }
             else
             {    
@@ -51,7 +51,7 @@
 
     function registros(){
         extract($_POST);
-        require("database.php");
+        $conn = database();
         $sql=mysqli_query($conn,"SELECT * FROM usuario where Email='$Email'");
         if(mysqli_num_rows($sql)>0)
         {

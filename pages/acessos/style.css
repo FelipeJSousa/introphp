@@ -1,0 +1,41 @@
+table {
+  border-spacing: 1;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  margin: 2.5rem 5rem;
+}
+
+table * {
+  position: relative;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+table thead tr {
+  height: 60px;
+  background: #4CAF50;
+}
+
+th {
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: bolder;
+}
+
+table td, table th {
+  text-align: center;
+}
+
+table tbody tr:hover {
+  background-color: #ccc;
+}
