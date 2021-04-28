@@ -1,5 +1,5 @@
 <?php
-	$page = "sobre"
+	$page = "acessos"
 ?>
 
 <!DOCTYPE html>
@@ -12,8 +12,7 @@
 <title>Bem vindo ao nosso projeto!</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="assests/css/style.css">
-<link rel="stylesheet" href="../style/style.css">
+<link rel="stylesheet" href="../../style/style.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -21,32 +20,25 @@
 
 </head>
 <body>
-	<?php 
-		include '../cabecalho.php'
+	<?php
+		include '../../cabecalho.php';
 	?>
 <div class="signup-form page">
 	<?php
-		include '../menu.php'
+		include_once '../../menu.php';
+        verificaLogin();
 	?>
-    <form action="home.php" method="post" enctype="multipart/form-data">
+    <form action="acessos.php" method="post" enctype="multipart/form-data">
         <?php
-            verificaLogin();
-
-            $conne = database();
-            $query = mysqli_query($conne, 'SELECT * FROM Conteudos');
-            while($cont = mysqli_fetch_array($query)){
-                echo $cont["Nome"] === $page ? $cont["Conteudo"] : "";
-            }
+            print_r($Conteudos[$page]);
         ?>
-            
 		<p class="hint-text"><br><?php echo $_SESSION["Nome"] ?> <?php echo $_SESSION["Sobrenome"] ?></p>
-        <div class="text-center">Deseja sair desta página? <br><a href="../logout.php">Logout</a></div>
+        <div class="text-center">Deseja sair desta página? <br><a href="../../logout.php">Logout</a></div>
     </form>
 	
-	
 </div>
-<?php 
-	include '../rodape.php'
-?>
+    <?php
+        include_once '../../rodape.php';
+    ?>
 </body>
 </html>
