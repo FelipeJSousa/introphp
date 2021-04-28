@@ -27,27 +27,9 @@ include_once '../../cabecalho.php';
     include_once '../../menu.php';
     verificaLogin();
     ?>
-<!--    --><?php
+    <?php
 //    print_r($Conteudos[$page]);
-//    ?>
-<!--    <div>-->
-<!--        <table id="tbGrupoAcesso">-->
-<!--            <thead>-->
-<!--                <tr>-->
-<!--                    <th>Nome Grupo Acesso</th>-->
-<!--                </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--                --><?php
-//                    include_once 'functions.php';
-//                    $listGrupoAcesso = listarGruposAcesso();
-//                    foreach ( $listGrupoAcesso as $acesso){
-//                        echo '<tr><td>'.$acesso.'</td></tr>';
-//                    }
-//                ?>
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
+    ?>
     <div>
         <table id="tbGrupoAcesso">
             <thead>
