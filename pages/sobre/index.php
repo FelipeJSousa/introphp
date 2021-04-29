@@ -1,5 +1,5 @@
 <?php
-	$page = "sobre"
+    $page = "sobre";
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,6 @@
 <title>Bem vindo ao nosso projeto!</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="assests/css/style.css">
 <link rel="stylesheet" href="../../style/style.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -26,11 +25,12 @@
 	?>
 <div class="signup-form page">
 	<?php
-		include_once '../../menu.php'
+		include_once '../../menu.php';
+        include_once '../../funcoes.php';
+        verificaLogin($page);
 	?>
     <form action="home.php" method="post" enctype="multipart/form-data">
         <?php
-            verificaLogin();
             print_r($Conteudos[$page]);
         ?>
 
