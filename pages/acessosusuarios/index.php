@@ -42,6 +42,8 @@
                     <th>Sobreome</th>
                     <th>Email</th>
                     <th>Grupo Acesso</th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -54,21 +56,62 @@
                         echo '<td>'.$usuario->Nome.'</td>';
                         echo '<td>'.$usuario->Sobrenome.'</td>';
                         echo '<td>'.$usuario->Email.'</td>';
-                        echo '<td>'.$usuario->NomeGrupo.'</td></tr>';
+                        echo '<td>
+                                <span id="UserGroup'.$usuario->IDUsuario.'">'.$usuario->NomeGrupo.'</span>
+                                <select id="editUserGroup'.$usuario->IDUsuario.'" hidden>';
+                        foreach ($listGrupoAcesso as $grupo){
+                                    echo '<option value="'.$grupo->IDGrupo.'" label="'.$grupo->NomeGrupo.'"></option>';
+                        }
+                        echo   '</select></td>';
+                        echo '<td>
+                                <a href="#" id="edit'.$usuario->IDUsuario.'" onclick="edit('.$usuario->IDUsuario.')" >Editar</a>
+                              </td>';
+                        echo '<td>
+                                <a href="#" id="salvar'.$usuario->IDUsuario.'" hidden >Salvar</a>
+                              </td></tr>';
                     }
                 ?>
                 </tbody>
             </table>
         </div>
-        
+        <option va></option>
     <div class="text-center">Deseja sair desta página? <br><a href="../../logout.php">Logout</a></div>
     </div>
-    <?php
-
-    ?>
 
 
 </div>
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+        $(".post").on("click",function(){
+            $.ajax({
+                url: "function.php",
+                type: "POST",
+                data: { name: "John", location: "Boston" },
+                success: function(response){
+                    //do action
+                },
+                error: function(){
+                    // do action
+                }
+            });
+        });
+    });
+
+    function edit(id) {
+        if(document.getElementById('UserGroup'+id).hasAttribute('hidden')){
+            document.getElementById('UserGroup'+id).removeAttribute('hidden');
+            document.getElementById('editUserGroup'+id).hidden = true;
+            document.getElementById('edit'+id).innerHTML = "Editar";
+            document.getElementById('salvar'+id).hidden = true;
+        }
+        else{
+            document.getElementById('editUserGroup'+id).removeAttribute('hidden');
+            document.getElementById('UserGroup'+id).hidden = true;
+            document.getElementById('edit'+id).innerHTML = "Cancelar";
+            document.getElementById('salvar'+id).hidden = false;
+        }
+    }
+</script>
 <?php
 include_once '../../rodape.php';
 ?>
