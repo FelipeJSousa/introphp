@@ -20,7 +20,8 @@
             extract($_POST);
             $conn = database();
             $sql = mysqli_query($conn,"SELECT u.*,g.NomeGrupo FROM usuario u
-inner join GrupoDeAcesso g on g.IDGrupo = u.IDGrupo where Email='$email' and Senha='$senha'");
+                                             inner join GrupoDeAcesso g on g.IDGrupo = u.IDGrupo 
+                                             where Email='$email' and Senha='$senha'");
             
             $row  = mysqli_fetch_array($sql);
             if(is_array($row))
@@ -103,5 +104,4 @@ inner join GrupoDeAcesso g on g.IDGrupo = u.IDGrupo where Email='$email' and Sen
         }
     
     }
-
 ?>

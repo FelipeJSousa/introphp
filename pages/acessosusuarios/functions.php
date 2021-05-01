@@ -3,35 +3,26 @@
     if(isset($_POST['function']) && !empty($_POST['function'])) {
         $function = $_POST['function'];
         switch($function) {
-            case 'functionSave' : functionSave();break;
+            case 'functionEditUserGroup' : functionEditUserGroup($_POST['user'],$_POST['group']);break;
         }
     }
 
-function functionSave(){
-    session_start();
-    if(isset($_POST['email']))
-    {
-        extract($_POST);
-        $conn = database();
-        $sql = mysqli_query($conn,"SELECT u.*,g.NomeGrupo FROM usuario u
-inner join GrupoDeAcesso g on g.IDGrupo = u.IDGrupo where Email='$email' and Senha='$senha'");
-
-        $row  = mysqli_fetch_array($sql);
-        if(is_array($row))
-        {
-            $_SESSION["IDUsuario"] = $row['IDUsuario'];
-            $_SESSION["Email"]=$row['Email'];
-            $_SESSION["Nome"]=$row['Nome'];
-            $_SESSION["Sobrenome"]=$row['Sobrenome'];
-            $_SESSION["NomeGrupo"]=$row['NomeGrupo'];
-
-            header("Location: pages/home/index.php");
-        }
-        else
-        {
-            $GLOBALS["ErroForms"] = "<script> alert('E-mail ou senha incorreta'); window.location.href='login.php'; </script>";
-        }
+function functionEditUserGroup($userid, $groupid){
+    include_once  '../../funcoes.php';
+    $Conn = database();
+    $query = 'update usuario set IDGrupo ='.$groupid.' where IDUsuario='.$userid;
+    $resp = mysqli_query($Conn, $query) or die(mysqli_error($Conn));
+    if($Conn->query($query) === TRUE){
+        $data = array("usuarioid" => $userid, "groupid"=> $groupid);
+        header('Content-Type: application/json');
+        http_response_code(200);
     }
+    else{
+        $data = array("erro" => mysqli_error($Conn));
+        header('Content-Type: application/json');
+        http_response_code(400);
+    }
+    echo json_encode($data);
 }
 
 function listarGruposAcesso(){

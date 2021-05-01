@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <link rel="stylesheet" href="../../style/style.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -67,35 +68,38 @@
                                 <a href="#" id="edit'.$usuario->IDUsuario.'" onclick="edit('.$usuario->IDUsuario.')" >Editar</a>
                               </td>';
                         echo '<td>
-                                <a href="#" id="salvar'.$usuario->IDUsuario.'" hidden >Salvar</a>
+                                <a href="#" id="salvar'.$usuario->IDUsuario.'" onclick="save('.$usuario->IDUsuario.')" hidden >Salvar</a>
                               </td></tr>';
                     }
                 ?>
                 </tbody>
             </table>
         </div>
-        <option va></option>
-    <div class="text-center">Deseja sair desta página? <br><a href="../../logout.php">Logout</a></div>
+        <span id="Error"></span>
+        <div class="text-center">Deseja sair desta página? <br><a href="../../logout.php">Logout</a></div>
     </div>
-
-
 </div>
+
 <script type="text/javascript">
-    jQuery(document).ready(function($){
-        $(".post").on("click",function(){
-            $.ajax({
-                url: "function.php",
-                type: "POST",
-                data: { name: "John", location: "Boston" },
-                success: function(response){
-                    //do action
-                },
-                error: function(){
-                    // do action
-                }
-            });
+    function save(iduser){
+        let e = document.getElementById('editUserGroup'+iduser);
+        let idgroup = parseInt(e.options[e.selectedIndex].value);
+        let groupName = e.options[e.selectedIndex].label;
+        edit(iduser);
+        $.ajax({
+            url: "functions.php",
+            type: "POST",
+            data: { function: "functionEditUserGroup", user: iduser, group: idgroup},
+            success: function(response){
+                console.log(response.httpRequestStatusCode,' Success ',response);
+                document.getElementById('UserGroup'+iduser).innerHTML= groupName;
+            },
+            error: function(response){
+                console.log(response.httpRequestStatusCode,' Error ',response);
+                document.getElementById("Error").innerHTML = `Não foi possível salvar ${groupName}!`;
+            }
         });
-    });
+    }
 
     function edit(id) {
         if(document.getElementById('UserGroup'+id).hasAttribute('hidden')){
