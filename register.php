@@ -1,5 +1,5 @@
 <?php
-    require("funcoes.php");
+    require "funcoes.php";
 ?>
 
 <!DOCTYPE html>
@@ -49,8 +49,6 @@
         echo $GLOBALS["ErroRegister"];
         $GLOBALS["ErroRegister"] = "";
         ?>
-
-
     </div>
     <?php 
 	include 'rodape.php'

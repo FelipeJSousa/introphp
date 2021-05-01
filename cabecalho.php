@@ -1,5 +1,5 @@
 <?php
-echo "<div name="header">
-        <h1>Sistema Piloto</h1>
-    </div>"
+    echo '<div name="header">
+            <h1>Sistema Piloto</h1>
+        </div>'
 ?>

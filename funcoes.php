@@ -19,7 +19,9 @@
         {
             extract($_POST);
             $conn = database();
-            $sql = mysqli_query($conn,"SELECT * FROM usuario where Email='$email' and Senha='$senha'");
+            $sql = mysqli_query($conn,"SELECT u.*,g.NomeGrupo FROM usuario u
+                                             inner join GrupoDeAcesso g on g.IDGrupo = u.IDGrupo 
+                                             where Email='$email' and Senha='$senha'");
             
             $row  = mysqli_fetch_array($sql);
             if(is_array($row))
@@ -28,7 +30,9 @@
                 $_SESSION["Email"]=$row['Email'];
                 $_SESSION["Nome"]=$row['Nome'];
                 $_SESSION["Sobrenome"]=$row['Sobrenome']; 
-                header("Location: home.php"); 
+                $_SESSION["NomeGrupo"]=$row['NomeGrupo'];
+
+                header("Location: pages/home/index.php");
             }
             else
             {    
@@ -37,7 +41,7 @@
         }
     }
 
-    function verificaLogin(){
+    function verificaLogin($pagina){
         session_start();
         $conn = database();
         $IDUsuario = $_SESSION["IDUsuario"];
@@ -46,11 +50,44 @@
         if($row["Nome"] == ''){
             header ("Location: login.php");
         };
+
+        $uricomplete = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+        $page = substr($uricomplete,strrpos($uricomplete,'/')+1);
+        echo "<script>console.log('VerificaLogin: {',
+                                    'NomeGrupo: {$_SESSION["NomeGrupo"]}, ',
+                                    'pagina: {$pagina} }',
+                                    )</script>";
+
+        verificaPermissoes($pagina);
+    }
+
+    function verificaPermissoes($pagina){
+        session_start();
+        $conn = database();
+        $uricomplete   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+        $page = substr($uricomplete,strrpos($uricomplete,'/')+1);
+        echo "<script>console.log('VerificaPermissoes: {',
+                                    'NomeGrupo: {$_SESSION["NomeGrupo"]}, ',
+                                    'pagina: {$pagina} }',
+                                    )</script>";
+
+        $query = "SELECT * FROM GrupoDeAcesso GDA
+                    INNER JOIN acessoPermitido APE ON APE.IDGrupo_FK = GDA.IDGrupo
+                    INNER JOIN Conteudos CON ON CON.ID = APE.IDConteudo_FK
+                    WHERE GDA.NomeGrupo = '{$_SESSION["NomeGrupo"]}'
+                    AND CON.Nome = '{$pagina}'";
+        $result = mysqli_query($conn, $query);
+        if($result->num_rows<1){
+            $host  = $_SERVER['HTTP_HOST'];
+            $uri = substr($uricomplete,0,strrpos($uricomplete,'/'));
+
+            header ("Location: http://{$host}{$uri}/home/index.php");
+        }
     }
 
     function registros(){
         extract($_POST);
-        require("database.php");
+        $conn = database();
         $sql=mysqli_query($conn,"SELECT * FROM usuario where Email='$Email'");
         if(mysqli_num_rows($sql)>0)
         {
@@ -67,5 +104,4 @@
         }
     
     }
-
 ?>

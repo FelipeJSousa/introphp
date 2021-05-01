@@ -1,7 +1,5 @@
 body {
     text-align: center;
-
-
     padding: 3rem 5rem;
 }
 
@@ -11,8 +9,13 @@ form {
   display: inline-block;
 }
 
+main-content {
+  display: flex;
+  flex-direction: column;
+}
+
 .page {
-	display: flex;
+  display: flex;
   margin: 4rem;
 }
 .vertical-menu {
@@ -35,3 +38,4 @@ form {
   background-color: #4CAF50;
   color: white;
 }
+
